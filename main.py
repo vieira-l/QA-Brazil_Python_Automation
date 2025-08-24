@@ -4,7 +4,7 @@ import data
 import helpers
 from pages import UrbanRoutesPage
 from selenium.webdriver import Chrome
-from selenium.webdriver.common.by import by
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
