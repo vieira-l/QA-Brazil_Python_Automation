@@ -1,6 +1,8 @@
 # Recupera o código do telefone. Não mude
 # O arquivo deve permanecer completamente inalterado
 
+from selenium.common.exceptions import WebDriverException
+
 def retrieve_phone_code(driver) -> str:
     """Este código recupera o número de confirmação do telefone e o retorna como uma string.
     Use-o quando o aplicativo espera o código de confirmação para passá-lo para seus testes.

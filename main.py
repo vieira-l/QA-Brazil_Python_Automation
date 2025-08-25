@@ -32,7 +32,7 @@ class TestUrbanRoutes:
     def test_select_plan(self):
         self.driver.get(data.URBAN_ROUTES_URL)
         routes_page = UrbanRoutesPage(self.driver)
-        routes_page.enter_locations(data.ADDRESS_FROM, data. ADDRESS_TO)
+        routes_page.enter_locations(data.ADDRESS_FROM, data.ADDRESS_TO)
         routes_page.click_taxi_option()
         routes_page.click_comfort_icon()
         assert routes_page.click_comfort_active()
@@ -56,7 +56,7 @@ class TestUrbanRoutes:
         routes_page.enter_locations(data.ADDRESS_FROM, data.ADDRESS_TO)
         routes_page.click_taxi_option()
         routes_page.click_comfort_icon()
-        routes_page.click_add_cartao(data.CARD_NUMBER, data.CARD_CODE)
+        routes_page.click_add_card(data.CARD_NUMBER, data.CARD_CODE)
         assert "Cartao" in routes_page.confirm_card()
 
     def test_comment_for_driver(self):
@@ -66,7 +66,7 @@ class TestUrbanRoutes:
         routes_page.click_taxi_option()
         routes_page.click_comfort_icon()
         routes_page.add_comment(data.MESSAGE_FOR_DRIVER)
-        assert data.MESSAGE_FOR_DRIVER in routes_page.comm
+        assert data.MESSAGE_FOR_DRIVER in routes_page.comment_confirm()
 
     def test_order_blanket_and_handkerchiefs(self):
         self.driver.get(data.URBAN_ROUTES_URL)

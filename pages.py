@@ -1,5 +1,4 @@
 # imports
-from html.parser import commentclose
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -57,7 +56,7 @@ class UrbanRoutesPage:
     def enter_to_location(self, to_text):
         WebDriverWait(self.driver, 3).until(
             EC.visibility_of_element_located(self.to_field))
-        self.driver.find_element(*self.from_field).send_keys(to_text)
+        self.driver.find_element(*self.to_field).send_keys(to_text)
 
     def enter_locations(self, from_text, to_text):
         self.enter_from_location(from_text)
@@ -91,12 +90,12 @@ class UrbanRoutesPage:
     def click_number_text(self, telefone):
         self.driver.find_element(*self.number_text_locator).click()
 
-        self.driver.find_element(*number_enter).send_keys(telefone)
+        self.driver.find_element(*self.number_enter).send_keys(telefone)
 
         self.driver.find_element(*self.number_confirm).click()
 
         code = retrieve_phone_code(self.driver)
-        code_input = WebDriverWait(self.driver, ).until(
+        code_input = WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located(self.number_code)
         )
         code_input.clear()
@@ -104,7 +103,7 @@ class UrbanRoutesPage:
 
         self.driver.find_element(*self.code_confirm).click()
 
-    def click_add_cartao(self, cartao,code):
+    def click_add_card(self, cartao,code):
         self.driver.find_element(*self.add_metodo_pagamento).click()
         self.driver.find_element(*self.add_card).click()
         time.sleep(1)
@@ -115,13 +114,13 @@ class UrbanRoutesPage:
         self.driver.find_element(*self.add_finish_card).click()
         self.driver.find_element(*self.close_button_card).click()
 
-    def confirm_cartao(self):
+    def confirm_card(self):
         return self.driver.find_element(*self.confirm_card).text
 
-    def add_comentario(self):
+    def add_comment(self, comentario):
         self.driver.find_element(*self.add_comment).send_keys(comentario)
 
-    def coment_confirm(self):
+    def comment_confirm(self):
         return self.driver.find_element(*self.add_comment).get_attribute('value')
 
     def switch_cobertor(self):
@@ -131,12 +130,12 @@ class UrbanRoutesPage:
     def switch_cobertor_active(self):
         switch = WebDriverWait(self.driver, 10).until(
            EC.presence_of_element_located(self.switch_blanket_active))
-        return switch.is_selected()
+        return switch.is_displayed()
 
     def add_ice(self):
         self.driver.find_element(*self.add_icecream).click()
 
-    def qnt_sorvete(self):
+    def qnt_icecream(self):
         return self.driver.find_element(*self.qnt_icecream).text
 
     def call_taxi(self):
