@@ -7,6 +7,8 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import WebDriverException
+
 
 
 class TestUrbanRoutes:
@@ -30,6 +32,7 @@ class TestUrbanRoutes:
 
 
 
+
     def test_select_plan(self):
         self.driver.get(data.URBAN_ROUTES_URL)
         routes_page = UrbanRoutesPage(self.driver)
@@ -37,6 +40,7 @@ class TestUrbanRoutes:
         routes_page.click_taxi_option()
         routes_page.click_comfort_icon()
         assert routes_page.click_comfort_active()
+        time.sleep(10)
 
 
 
@@ -76,6 +80,7 @@ class TestUrbanRoutes:
         routes_page.click_comfort_icon()
         routes_page.switch_cobertor()
         assert routes_page.switch_cobertor_active() is True
+        time.sleep(10)
 
     def test_order_2_ice_creams(self):
         self.driver.get(data.URBAN_ROUTES_URL)
